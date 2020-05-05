@@ -1,0 +1,45 @@
+.btn {
+  // boxType
+  display: inline-block;
+
+  // position
+  position: relative;
+
+  // border
+  border: $btn-border-width solid transparent;
+  border-radius: $btn-border-radius;
+  box-shadow: $btn-box-shadow;
+
+  // padding
+  padding: $btn-padding-y $btn-padding-x;
+
+  // content - font
+  color: $body-color;
+  text-align: center;
+  font-size: $btn-font-size;
+  font-weight: $btn-font-weight;
+  white-space: nowrap;
+
+  // background
+  background-image: none;
+
+  // layout
+  vertical-align: center;
+  line-height: $btn-line-height;
+
+  //
+  cursor: pointer;
+  transition: $btn-transition;
+
+  &.disabled,
+  &[disabled] {
+    box-shadow: none;
+
+    cursor: not-allowed;
+    opacity: $btn-disabled-opacity;
+
+    > * {
+      pointer-events: none;
+    }
+  }
+}
