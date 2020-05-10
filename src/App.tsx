@@ -8,6 +8,15 @@ const App: React.FC = () => {
         <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
           Hello
         </Button>
+        <Button btnType={ButtonType.Danger} size={ButtonSize.Large}>
+          Hello
+        </Button>
+        <Button btnType={ButtonType.Primary} size={ButtonSize.Small}>
+          Hello
+        </Button>
+        <Button btnType={ButtonType.Link} href="http://www.baidu.com" disabled>
+          Baidu Link
+        </Button>
         <Button btnType={ButtonType.Link} href="http://www.baidu.com">
           Baidu Link
         </Button>
