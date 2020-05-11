@@ -1,5 +1,5 @@
 import React from 'react';
-import className from 'classnames';
+import classNames from 'classnames';
 export enum ButtonSize {
   Large = 'lg',
   Small = 'sm',
@@ -21,11 +21,29 @@ interface BaseButtonProps {
   href?: string;
 }
 
-const Button: React.FC<BaseButtonProps> = (props) => {
-  const { btnType, disabled, size, children, href } = props;
+// 让 Button组件 包含 button标签 原有的属性
+type NativeButtonProps = BaseButtonProps &
+  React.ButtonHTMLAttributes<HTMLElement>;
+
+// 添加 a标签 原有的属性
+type AnchorButtonProps = BaseButtonProps &
+  React.AnchorHTMLAttributes<HTMLElement>;
+
+// 有些属性是 a标签 必须的但不是 button标签 必须的，使用 Partial<T> 让所有属性变为可选
+export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
+const Button: React.FC<ButtonProps> = (props) => {
+  const {
+    btnType,
+    className,
+    disabled,
+    size,
+    children,
+    href,
+    ...restProps
+  } = props;
 
   // btn, btn-lg, btn-primary
-  const classes = className('btn', {
+  const classes = classNames('btn', className, {
     [`btn-${btnType}`]: btnType,
     [`btn-${size}`]: size,
     disabled: btnType === ButtonType.Link && disabled,
@@ -33,13 +51,13 @@ const Button: React.FC<BaseButtonProps> = (props) => {
 
   if (btnType === ButtonType.Link && href) {
     return (
-      <a href={href} className={classes}>
+      <a href={href} className={classes} {...restProps}>
         {children}
       </a>
     );
   } else {
     return (
-      <button className={classes} disabled={disabled}>
+      <button className={classes} disabled={disabled} {...restProps}>
         {children}
       </button>
     );

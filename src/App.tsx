@@ -5,19 +5,34 @@ const App: React.FC = () => {
     <div className="App">
       <header className="App-header">
         <Button disabled>Hello</Button>
-        <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
+        <Button btnType={ButtonType.Primary} size={ButtonSize.Large} autoFocus>
           Hello
         </Button>
-        <Button btnType={ButtonType.Danger} size={ButtonSize.Large}>
+        <Button
+          btnType={ButtonType.Danger}
+          size={ButtonSize.Large}
+          onClick={(e) => {
+            e.preventDefault();
+            alert(223);
+          }}
+        >
           Hello
         </Button>
-        <Button btnType={ButtonType.Primary} size={ButtonSize.Small}>
+        <Button
+          btnType={ButtonType.Primary}
+          size={ButtonSize.Small}
+          className="custom"
+        >
           Hello
         </Button>
         <Button btnType={ButtonType.Link} href="http://www.baidu.com" disabled>
           Baidu Link
         </Button>
-        <Button btnType={ButtonType.Link} href="http://www.baidu.com">
+        <Button
+          btnType={ButtonType.Link}
+          href="http://www.baidu.com"
+          target="_blank"
+        >
           Baidu Link
         </Button>
         <p>
